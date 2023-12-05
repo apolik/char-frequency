@@ -1,0 +1,7 @@
+services:
+  char-frequency:
+    container_name: char-frequency
+    image: dsafdsfadafs/char-frequency:latest
+    ports:
+      - "8080:8080"
+    restart: always
