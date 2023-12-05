@@ -10,17 +10,14 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/")
 class CharFrequencyController {
     @PostMapping("/char-frequency")
-    fun calculateCharacterFrequency(@RequestBody input: TextInputRequest): Map<Char, Long> {
+    fun calculateCharacterFrequency(@RequestBody input: TextInputRequest): Map<Char, Int> {
         val text = input.text
         if (!text.matches((Regex("[A-Za-z]+")))) {
             throw ValidationException("Text input must not be blank and must contain only english letters")
         }
 
-        return text.groupingBy { it }
+        return text
+            .groupingBy { it }
             .eachCount()
-            .mapValues { it.value.toLong() }
-            .entries
-            .sortedByDescending { it.value }
-            .associate { it.toPair() }
     }
 }
