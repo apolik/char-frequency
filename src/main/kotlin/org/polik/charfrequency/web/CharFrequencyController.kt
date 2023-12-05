@@ -19,5 +19,8 @@ class CharFrequencyController {
         return text
             .groupingBy { it }
             .eachCount()
+            .entries
+            .sortedByDescending { it.value }
+            .associate { it.toPair() }
     }
 }
